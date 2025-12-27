@@ -99,52 +99,30 @@
       return checkBox.checked;
   }
   
-  function viewLinkCopy() {
-      var url = "http://www.learnmodeon.com/cricket/view.php?inningsId=" + document.getElementById("inningsId").value;
-      var textarea;
-      var result;
-      try {
-          textarea = document.createElement('textarea');
-          textarea.setAttribute('readonly', true);
-          textarea.setAttribute('contenteditable', true);
-          textarea.style.position = 'fixed';
-          textarea.value = url;
-  
-          document.body.appendChild(textarea);
-  
-          //textarea.focus();
-          textarea.select();
-  
-          const range = document.createRange();
-          range.selectNodeContents(textarea);
-  
-          const sel = window.getSelection();
-          sel.removeAllRanges();
-          sel.addRange(range);
-  
-          textarea.setSelectionRange(0, textarea.value.length);
-          result = document.execCommand('copy');
-      } catch (err) {
-          console.error(err);
-          result = null;
-      } finally {
-          document.body.removeChild(textarea);
-      }
-      document.getElementById("notify").innerHTML = "Link copied to clipboard!";
-  }
-  
-  function pushData() {
-      document.getElementById("score").value = document.getElementById("totScore").innerHTML;
-      document.getElementById("overs").value = document.getElementById("overNum").innerHTML;
-      document.getElementById("ballByBalls2").value = document.getElementById("ballByBall").innerHTML;
-      document.getElementById("inningsIdForm").value = document.getElementById("inningsId").value;
-      document.getElementById("wktsdb").value = document.getElementById("wikts").innerHTML;
-      document.getElementById("crrdb").value = document.getElementById("runRate").innerHTML;
-      batsMenScore = "<tr><td>"+document.getElementById("player1Name").value+"*</td><td>"+document.getElementById("player1").innerHTML+"</td></tr>"+"<tr><td>"+document.getElementById("player2Name").value+"*</td><td>"+document.getElementById("player2").innerHTML+"</td></tr>"+document.getElementById("BatsMenStore").innerHTML;
-      document.getElementById("bmScoresdb").value=batsMenScore;
-      document.getElementById("pushData").submit();
-  }
-  
+function viewLinkCopy() {
+    const inningsId = localStorage.getItem("inningsId1");
+
+    if (!inningsId) {
+        document.getElementById("notify").innerHTML =
+            "Please start an innings first!";
+        return;
+    }
+
+    // build URL dynamically
+    const shareUrl =
+        window.location.origin +
+        window.location.pathname +
+        "?inningsId=" +
+        inningsId;
+
+    navigator.clipboard.writeText(shareUrl).then(() => {
+        document.getElementById("notify").innerHTML =
+            "Link copied to clipboard!";
+    }).catch(() => {
+        document.getElementById("notify").innerHTML =
+            "Copy failed!";
+    });
+}  
   function generateRandomId() {
       var milliseconds = (new Date).getTime();
       return milliseconds + Math.floor(Math.random() * 9999999999);
@@ -263,13 +241,42 @@
       return true;
   }
   
-  function shareUrl() {
-      var url = "http://www.learnmodeon.com/cricket/view.php?inningsId=" + document.getElementById("inningsId").value;
-      var uri = "whatsapp://send?text=" + url;
-      //var uri = "https://wa.me/?text="+url;
-      location.href = encodeURI(uri);
-      return true;
-  }
+function shareUrl() {
+    const inningsId = localStorage.getItem("inningsId1");
+
+    if (!inningsId) {
+        alert("Please start an innings first!");
+        return false;
+    }
+
+    const shareUrl =
+        window.location.origin +
+        window.location.pathname +
+        "?inningsId=" +
+        inningsId;
+
+    const uri = "https://wa.me/?text=" + encodeURIComponent(shareUrl);
+    window.open(uri, "_blank");
+
+    return true;
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const inningsIdFromUrl = params.get("inningsId");
+
+    if (!inningsIdFromUrl) return;
+
+    const localInningsId = localStorage.getItem("inningsId1");
+
+    if (inningsIdFromUrl === localInningsId) {
+        loadIng1();   // you already have this function
+    } else {
+        document.getElementById("notify").innerHTML =
+            "This match data is not available on this device.";
+    }
+});
+
   
   String.prototype.count = function (s1) {
       return (this.length - this.replace(new RegExp(s1, "g"), '').length) / s1.length;
@@ -398,7 +405,7 @@
       calcRunRate();
       changeStrike();
       if (isSyncOn()) {
-          pushData();
+        //   pushData();
       }
       document.getElementById("notify").innerHTML = (+nxtOver) + " overs completed!";
       return false;
