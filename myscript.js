@@ -84,11 +84,6 @@
   
   var playersScoreMap = {};
   
-  function isSyncOn() {
-      var checkBox = document.getElementById("syncFlagId");
-      return checkBox.checked;
-  }
-  
   function doesWideCount() {
       var checkBox = document.getElementById("wideFlagId");
       return checkBox.checked;
@@ -108,7 +103,7 @@ function viewLinkCopy() {
         return;
     }
 
-    // build URL dynamically
+    // building URL dynamically
     const shareUrl =
         window.location.origin +
         window.location.pathname +
@@ -147,7 +142,6 @@ function viewLinkCopy() {
       document.getElementById("wkRuns").value = "0";
       document.getElementById("wideFlagId").checked = true;
       document.getElementById("noBallFlagId").checked = true;
-      document.getElementById("syncFlagId").checked = false;
       document.getElementById("player1Name").value = "player1";
       document.getElementById("player1").innerHTML = "0";
       document.getElementById("player2Name").value = "player2";
@@ -209,7 +203,6 @@ function viewLinkCopy() {
           document.getElementById("runRate").innerHTML = localStorage.getItem("crr");
           document.getElementById("wideFlagId").checked = (localStorage.getItem("wdFlag") == 'true');
           document.getElementById("noBallFlagId").checked = (localStorage.getItem("nbFlag") == 'true');
-          document.getElementById("syncFlagId").checked = (localStorage.getItem("syncFlag") == 'true');
           document.getElementById("BatsMenStore").innerHTML = localStorage.getItem("outIndScore");
           document.getElementById("player1").innerHTML = localStorage.getItem("player1");
           document.getElementById("player2").innerHTML = localStorage.getItem("player2");
@@ -270,7 +263,7 @@ window.addEventListener("DOMContentLoaded", function () {
     const localInningsId = localStorage.getItem("inningsId1");
 
     if (inningsIdFromUrl === localInningsId) {
-        loadIng1();   // you already have this function
+        loadIng1();  
     } else {
         document.getElementById("notify").innerHTML =
             "This match data is not available on this device.";
@@ -404,9 +397,6 @@ window.addEventListener("DOMContentLoaded", function () {
       saveIng();
       calcRunRate();
       changeStrike();
-      if (isSyncOn()) {
-        //   pushData();
-      }
       document.getElementById("notify").innerHTML = (+nxtOver) + " overs completed!";
       return false;
   }
@@ -567,7 +557,6 @@ window.addEventListener("DOMContentLoaded", function () {
           localStorage.setItem("crr", document.getElementById("runRate").innerHTML);
           localStorage.setItem("wdFlag", document.getElementById("wideFlagId").checked);
           localStorage.setItem("nbFlag", document.getElementById("noBallFlagId").checked);
-          localStorage.setItem("syncFlag", document.getElementById("syncFlagId").checked);
           localStorage.setItem("outIndScore", document.getElementById("BatsMenStore").innerHTML);
           localStorage.setItem("player1", document.getElementById("player1").innerHTML);
           localStorage.setItem("player2", document.getElementById("player2").innerHTML);
@@ -588,7 +577,6 @@ window.addEventListener("DOMContentLoaded", function () {
       localStorage.removeItem("crr");
       localStorage.removeItem("wdFlag");
       localStorage.removeItem("nbFlag");
-      localStorage.removeItem("syncFlag");
       localStorage.removeItem("outIndScore");
       localStorage.removeItem("player1");
       localStorage.removeItem("player2");
@@ -600,7 +588,6 @@ window.addEventListener("DOMContentLoaded", function () {
   function clearStorage() {
       clearIng1();
       startOver();
-      //document.getElementById("ing").innerHTML = "innings1";
       document.getElementById("notify").innerHTML = "All local storage has has been removed!"
   }
   
