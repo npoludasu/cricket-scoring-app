@@ -3,11 +3,19 @@ body {
 	background: white;
 }
 
+h2 {
+	background: linear-gradient(0deg, #138808 23%, #ffffff 33%, #ffffff 66%, #FF9933 26%); 
+	background-color:#000080;
+	border: 5px dotted rgb(56, 56, 205);
+	color:#25057d;
+	margin: auto;
+	text-align: center;
+}
+
 .button {
 	background-color: #e7e7e7;
 	color: black;
 	border: none;
-	color: black;
 	padding: 10px 15px;
 	text-align: center;
 	text-decoration: none;
@@ -42,23 +50,14 @@ body {
 #p2Ovrd:hover  {
 	background-color: #4CAF50;
 	color: white;
-	-webkit-animation-name: example;
-	/* Safari 4.0 - 8.0 */
-	-webkit-animation-duration: 4s;
-	/* Safari 4.0 - 8.0 */
-	animation-name: example;
-	animation-duration: 2s;
+	animation: example 2s;
 }
 
 .button:hover {
 	background-color: #4CAF50;
 	color: white;
-	-webkit-animation-name: example;
-	/* Safari 4.0 - 8.0 */
-	-webkit-animation-duration: 4s;
-	/* Safari 4.0 - 8.0 */
-	animation-name: example;
-	animation-duration: 2s;
+	animation: example 2s;
+
 }
 
 @keyframes example {
@@ -88,16 +87,6 @@ td {
 
 .table1 tr:nth-child(even) {
 	background-color: #f2f2f2
-}
-
-h2 {
-	background: linear-gradient(0deg, #138808 23%, #ffffff 33%, #ffffff 66%, #FF9933 26%);
-	//background-color:#000080;
-	border: 5px dotted blue;
-	border-collapse: collapse;
-	color: #000080;
-	margin: auto;
-	text-align: center;
 }
 
 #totScore {
@@ -176,10 +165,20 @@ input[type=text],
 
 }
 
-#playerOverrideDiv,#playerOverrideDiv,{
+#playerOverrideDiv,#playerOverrideDiv {
 	width:200px;
 }
 
 #BatsMenStore tr:nth-child(even) {background: #CCC; font-weight:bold;}
 #BatsMenStore tr:nth-child(odd) {background: lightgreen;font-weight:bold;}
 
+.center-content {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+}
+
+#footer {
+	background-color: teal;
+	color: white;
+}
