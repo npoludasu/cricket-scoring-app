@@ -7,7 +7,7 @@
            toggleId="playerOverrideDiv";
       }
       else if(player === "player2"){
-               updatedScore = document.getElementById("p2Score").value;
+           updatedScore = document.getElementById("p2Score").value;
            document.getElementById("player2").innerHTML = updatedScore;
            toggleId="playerOverrideDiv2";
            document.getElementById("p2Score").value="0";
@@ -335,12 +335,14 @@ window.addEventListener("DOMContentLoaded", function () {
       }
       if (runs === "Nb") {
           var xtras = document.getElementById("nbExtras").value;
+          xtras = doesNoBallCount() ? xtras=="0" ? "1": xtras : "0";
           ballByBall = ballByBall + (runs + xtras + ",");
           if (doesNoBallCount()) {
-              runs = 1 + (+xtras);
+               runs = +xtras;
           } else {
               runs = 0;
           }
+
           /*if(xtras ==1 || xtras == 3){
               UpdatePlayerScores(xtras);
               changeStrike();
