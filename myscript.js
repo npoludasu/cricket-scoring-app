@@ -72,6 +72,7 @@
       }
   }
   
+
   function editBatsMenScore() {
       toggle("editScores");
       document.getElementById("scoreArea").value = document.getElementById("BatsMenStore").innerHTML;
@@ -377,7 +378,10 @@ window.addEventListener("DOMContentLoaded", function () {
       document.getElementById("notify").innerHTML = "This Over:" + thisover;
   
       if ((thisover.split("|").length - 1) == 6) {
-          nextOver();
+          setTimeout(()=>{
+             nextOver();
+          },500)
+           
       }
       calcRunRate();
       document.getElementById("nbExtras").value = 0;
