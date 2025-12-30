@@ -4,12 +4,21 @@ body {
 }
 
 h2 {
-	background: linear-gradient(0deg, #138808 23%, #ffffff 33%, #ffffff 66%, #FF9933 26%); 
-	background-color:#000080;
+	background: linear-gradient(0deg, #138808 23%, #ffffff 33%, #ffffff 66%, #FF9933 77%); 
 	border: 5px dotted rgb(56, 56, 205);
 	color:#25057d;
 	margin: auto;
 	text-align: center;
+}
+
+.bat-icon {
+  animation: pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.45; }
+  100% { opacity: 1; }
 }
 
 .button {
@@ -182,3 +191,4 @@ input[type=text],
 	background-color: teal;
 	color: white;
 }
+
