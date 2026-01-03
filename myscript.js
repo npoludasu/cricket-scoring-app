@@ -67,6 +67,8 @@
       var div = document.getElementById(divId);
       if (div.style.display === "none") {
           div.style.display = "block";
+           if(divId=='helpSection')
+               alert("Tip: Scroll to the bottom of the page to view the help section.")
       } else {
           div.style.display = "none";
       }
