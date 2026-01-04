@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Cricket Scorer</title>
+   <title>Nav's Gully Cricket</title>
    <link rel="stylesheet" href="style.css">
    <script src="myscript.js" defer></script>
-
 </head>
 
 <body onload="initScript();">
-   <h2>Gully Cricket<span class='bat-icon'>🏏</span></h2>
+   <header>
+      <h2>Gully Cricket<span class='bat-icon'>🏏</span></h2>
+   </header>
    <br>
    <div style="overflow-x:auto;">
       <table border="3px 3px" class="table2" align="center">
@@ -22,14 +22,14 @@
             </td>
             <td>
                <input type="text" name="inningsId" id="inningsId" style='background-color:lightgreen;' disabled>
-               <button class="button" onclick="viewLinkCopy()"
-                  style="width:40px;font-size:10px;padding-left:5px;"><b>Share</b></button>
+               <button class="button" onclick="viewLinkCopy()" style="width:40px;font-size:10px;padding-left:5px;"><b>Share</b></button>
             </td>
             <td>
                <button class="button" type="button" value="0" onClick="clearStorage()">Clear</button>
             </td>
          </tr>
-      </table><br>
+      </table>
+      <br>
       <table id="settingsTbl" border="1px 1px">
          <tr>
             <td><input type="checkbox" id="wideFlagId" Checked>Wide</td>
@@ -159,7 +159,7 @@
          </tr>
       </table>
    </div>
-   <div id='helpSection' style="display:none;overflow-x:auto;">
+   <article id='helpSection' style="display:none;overflow-x:auto;">
       <button id='helpButton' onclick="toggle('helpSection')">Hide Help</button>
       <pre id='helpContent'>
      ***************************************
@@ -283,9 +283,9 @@
       > click on [start]. choose wide/noball appropriately. give initial score at [0]+nb and press on [nb] button. Click on [nxt Over] button till you reach the current over.
       
    </pre><button id='helpButton' onclick="toggle('helpSection')">Hide Help</button>
-   </div>
+   </article>
 
-   <div id="footer">
+   <footer id="footer">
       <hr>
       <table class="center-content">
          <tr>
@@ -298,7 +298,7 @@
          </tr>
       </table>
       <hr>
-   </div>
+   </footer>
 
 </body>
 
