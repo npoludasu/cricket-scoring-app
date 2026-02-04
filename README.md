@@ -1,6 +1,6 @@
 # 🏏 Cricket Scoring Application
 
-A **mobile-first, real-time cricket scoring app** built with **HTML, CSS, and JavaScript** delivering accurate live scoring for gully cricket and small tournaments—right from your phone.
+A **real-time cricket scoring app** built with **HTML, CSS, and JavaScript** delivering accurate live scoring for gully cricket and small tournaments—right from your phone.
 
 
 ## 🚀 Features
